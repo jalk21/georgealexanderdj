@@ -419,14 +419,15 @@
     nav_booking:    { es: "Reservas", en: "Booking" },
     nav_cta:        { es: "Reservar", en: "Book a set" },
 
-    hero_eyebrow:   { es: "Reservas 12PM – 00H", en: "Booking 12PM – 00H" },
-    hero_sub:       { es: "Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunchs y todo lo que venga después. Actualmente disponible para reservas.",
+    // Unificadas las horas a formatos naturales en cada idioma
+    hero_eyebrow:   { es: "Reservas 12:00 – 00:00", en: "Booking 12 PM – 12 AM" },
+    hero_sub:       { es: "Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunches y todo lo que venga después. Actualmente disponible para reservas.",
                        en: "Groove-first sets from midday into the night — rooftop terraces, garden parties, Sunday sessions, brunch floors, and everything after dark. Currently open for bookings." },
     cta_book:       { es: "Reservar sesión", en: "Book a set" },
     cta_listen:     { es: "Escuchar mixes", en: "Listen to mixes" },
-    dial_label:     { es: "Horario de reservas · 12PM – 00H", en: "Booking window · 12PM – 00H" },
+    dial_label:     { es: "Horario de reservas · 12:00 – 00:00", en: "Booking window · 12 PM – 12 AM" },
 
-    marquee_booking:{ es: "Reservas Abiertas 12PM – 00H", en: "Now Booking 12PM – 00H" },
+    marquee_booking:{ es: "Reservas Abiertas 12:00 – 00:00", en: "Now Booking 12 PM – 12 AM" },
 
     mixes_eyebrow:  { es: "Últimas sesiones", en: "Latest sets" },
     mixes_h2:       { es: "Mixes en Mixcloud", en: "Mixes on Mixcloud" },
@@ -436,12 +437,14 @@
 
     socials_eyebrow:{ es: "Sígueme", en: "Follow along" },
     socials_h2:     { es: "Redes sociales", en: "On socials" },
-    ig_desc:        { es: "Clips, flyers y detrás de la consola.", en: "Clips, flyers & behind-the-decks." },
-    tt_desc:        { es: "Cortes de mixes y momentos en vivo.", en: "Mix cuts & live moments." },
+    // "Detrás de la cabina" suena mucho más natural en el entorno DJ de habla hispana
+    ig_desc:        { es: "Clips, flyers y el día a día en la cabina.", en: "Clips, flyers & behind-the-decks." },
+    tt_desc:        { es: "Cortes de mixes y momentos en directo.", en: "Mix cuts & live moments." },
 
     booking_eyebrow:{ es: "Reservas abiertas", en: "Now booking" },
-    booking_h2:     { es: "Sesiones, 12PM – 00H", en: "Gigs, 12PM – 00H" },
-    booking_p:      { es: "Day parties, sesiones en rooftop, jardines, terrazas de hotel, brunchs de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
+    booking_h2:     { es: "Sesiones, 12:00 – 00:00", en: "Gigs, 12 PM – 12 AM" },
+    // Corregido "brunchs" por "brunches" y adaptado "rooftop" a "azoteas" para no saturar de anglicismos
+    booking_p:      { es: "Tardeos, sesiones en azoteas, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
                        en: "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below." },
     label_email:    { es: "Correo · georgealexanderdj@gmail.com", en: "Email · georgealexanderdj@gmail.com" },
     label_ig_dm:    { es: "Instagram DM · @georgealexanderdj", en: "Instagram DM · @georgealexanderdj" },
@@ -450,17 +453,17 @@
     form_email_label:     { es: "Correo electrónico", en: "Email" },
     form_date_label:      { es: "Fecha del evento", en: "Date of event" },
     form_venue_label:     { es: "Local / evento", en: "Venue / event" },
-    form_venue_placeholder:{ es: "ej. terraza, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
+    form_venue_placeholder:{ es: "ej. azotea, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
     form_details_label:  { es: "Detalles", en: "Details" },
     form_details_placeholder:{ es: "Horarios, ambiente, número de invitados...", en: "Timings, vibe, guest count..." },
     captcha_error:  { es: "Eso no es correcto — inténtalo de nuevo.", en: "That's not quite right — try again." },
     submit_btn:     { es: "Enviar solicitud", en: "Send enquiry" },
-    form_note:      { es: "Se abre tu app de correo con los datos ya rellenados — esta página todavía no tiene servidor.",
+    form_note:      { es: "Se abrirá tu app de correo con los datos ya rellenados — esta página aún no tiene servidor.",
                        en: "Opens your email app with the details filled in — there's no server behind this page yet." }
   };
   var captchaTemplate = { es: "Comprobación rápida: ¿cuánto es {a} + {b}?", en: "Quick check: what is {a} + {b}?" };
-  var pageTitle = { es: "George Alexander DJ — Reservas 12PM–00H", en: "George Alexander DJ — Booking 12PM–00H" };
-  var dialAria = { es: "Vinilo que marca el horario de reservas, de 12PM a 00H", en: "Vinyl dial marking the booking window, 12 PM through 00H" };
+  var pageTitle = { es: "George Alexander DJ — Reservas 12:00 – 00:00", en: "George Alexander DJ — Booking 12PM–12AM" };
+  var dialAria = { es: "Vinilo que marca el horario de reservas, de 12:00 a 00:00", en: "Vinyl dial marking the booking window, 12 PM through 12 AM" };
 
   var currentLang = 'es';
 
