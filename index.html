@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">George Alexander DJ — Reservas 12PM–00H</title>
+<title id="page-title">George Alexander DJ — Reservas 12:00–00:00</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -70,8 +71,9 @@
   /* ---------- NAV ---------- */
   nav{position:sticky;top:0;z-index:50;background:rgba(20,16,27,0.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;}
-  .nav-name{font-family:'Unbounded',sans-serif;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:0.01em;}
+  .nav-name{font-family:'Unbounded',sans-serif;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:0.01em;display:flex;align-items:center;gap:10px;}
   .nav-name span{color:var(--blue);}
+  .nav-logo{height:34px;width:auto;display:block;}
   .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a{text-decoration:none;color:var(--muted);border-bottom:1px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s;}
   .nav-links a:hover,.nav-links a:focus-visible{color:var(--paper);border-color:var(--amber);}
@@ -128,13 +130,6 @@
   .dial-wrap{position:relative;aspect-ratio:1/1;max-width:380px;margin:0 auto;z-index:1;}
   .dial-wrap svg{width:100%;height:100%;position:relative;z-index:1;}
   .dial-label{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-  .gear-sticker{
-    position:absolute;width:58%;max-width:230px;left:-8%;bottom:8%;
-    transform:rotate(-9deg);
-    filter:drop-shadow(0 10px 18px rgba(0,0,0,0.45));
-    z-index:2;pointer-events:none;
-  }
-  @media(max-width:860px){.gear-sticker{left:2%;bottom:0%;width:50%;}}
   .vinyl{animation:spin 20s linear infinite;transform-origin:190px 190px;}
   .tonearm{transform-origin:190px 190px;animation:sweep 24s linear infinite;}
   @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
@@ -207,7 +202,7 @@
 
 <nav>
   <div class="wrap">
-    <a class="nav-name" href="#top">GEORGE ALEXANDER<span>DJ</span></a>
+    <a class="nav-name" href="#top"><img class="nav-logo" src="logo.png" alt="George Alexander DJ crest logo">GEORGE ALEXANDER<span>DJ</span></a>
     <ul class="nav-links">
       <li><a href="#mixes" data-i18n="nav_mixes">Mixes</a></li>
       <li><a href="#socials" data-i18n="nav_socials">Redes</a></li>
@@ -226,9 +221,9 @@
   <div class="glow g2"></div>
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow" data-i18n="hero_eyebrow">Reservas 12PM – 00H</p>
+      <p class="eyebrow" data-i18n="hero_eyebrow">Reservas 12:00 – 00:00</p>
       <h1>George Alexander<span class="hl">DJ</span></h1>
-      <p class="hero-sub" data-i18n="hero_sub">Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunchs y todo lo que venga después. Actualmente disponible para reservas.</p>
+      <p class="hero-sub" data-i18n="hero_sub">Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunches y todo lo que venga después. Actualmente disponible para reservas.</p>
       <div class="genre-line">
         <span class="genre-tag"><i></i>Tech House</span>
         <span class="genre-tag"><i></i>Afro House</span>
@@ -245,7 +240,7 @@
       </div>
     </div>
     <div class="dial-wrap">
-      <svg viewBox="0 0 380 380" role="img" aria-label="Vinilo que marca el horario de reservas, de 12PM a 00H" id="dial-svg">
+      <svg viewBox="0 0 380 380" role="img" aria-label="Vinilo que marca el horario de reservas, de 12:00 a 00:00" id="dial-svg">
         <defs>
           <radialGradient id="vinylGrad" cx="50%" cy="50%" r="65%">
             <stop offset="0%" stop-color="#2A2036"/>
@@ -260,7 +255,7 @@
           <circle cx="190" cy="190" r="106" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
           <circle cx="190" cy="190" r="84" fill="#131829" stroke="#2A3252" stroke-width="1"/>
           <text x="190" y="185" text-anchor="middle" font-family="Unbounded, sans-serif" font-size="12" font-weight="800" fill="#F2F4FA">G.A.DJ</text>
-          <text x="190" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" fill="#8A93B8">12PM–00H</text>
+          <text x="190" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" fill="#8A93B8">12:00–00:00</text>
         </g>
         <!-- highlighted booking window ring -->
         <circle cx="190" cy="190" r="163" fill="none" stroke="url(#ringGrad)" stroke-width="3"/>
@@ -271,8 +266,8 @@
             <stop offset="100%" stop-color="#35E0C8"/>
           </linearGradient>
         </defs>
-        <text x="150" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#F2F4FA">12PM</text>
-        <text x="212" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#35E0C8">00H</text>
+        <text x="150" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#F2F4FA">12:00</text>
+        <text x="212" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#35E0C8">00:00</text>
         <!-- tonearm / needle sweeping the full loop -->
         <g class="tonearm">
           <line x1="190" y1="190" x2="190" y2="30" stroke="#FFC24B" stroke-width="4" stroke-linecap="round"/>
@@ -280,7 +275,7 @@
         </g>
         <circle cx="190" cy="190" r="9" fill="#F2F4FA"/>
       </svg>
-      <p class="dial-label" data-i18n="dial_label">Horario de reservas · 12PM – 00H</p>
+      <p class="dial-label" data-i18n="dial_label">Horario de reservas · 12:00 – 00:00</p>
     </div>
   </div>
 </div>
@@ -292,13 +287,13 @@
     <span>Afro Latin House</span><span class="dot">•</span>
     <span>Funky House</span><span class="dot">•</span>
     <span>Nu Disco</span><span class="dot">•</span>
-    <span data-i18n="marquee_booking">Reservas Abiertas 12PM – 00H</span><span class="dot">•</span>
+    <span data-i18n="marquee_booking">Reservas Abiertas 12:00 – 00:00</span><span class="dot">•</span>
     <span>Tech House</span><span class="dot">•</span>
     <span>Afro House</span><span class="dot">•</span>
     <span>Afro Latin House</span><span class="dot">•</span>
     <span>Funky House</span><span class="dot">•</span>
     <span>Nu Disco</span><span class="dot">•</span>
-    <span data-i18n="marquee_booking">Reservas Abiertas 12PM – 00H</span><span class="dot">•</span>
+    <span data-i18n="marquee_booking">Reservas Abiertas 12:00 – 00:00</span><span class="dot">•</span>
   </div>
 </div>
 
@@ -333,14 +328,15 @@
     </div>
     <div class="social-grid">
       <a class="social-card ig" href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener">
+        <span class="plat">Instagram</span>
         <img class="social-sticker" src="ig-sticker.png" alt="@GeorgeAlexanderDJ Instagram sticker">
-        <span style="color:var(--muted)" data-i18n="ig_desc">Clips, flyers y detrás de la consola.</span>
+        <span style="color:var(--muted)" data-i18n="ig_desc">Clips, flyers y momentos en cabina.</span>
         <span class="arrow">↗</span>
       </a>
       <a class="social-card tt" href="https://www.tiktok.com/@djgeorgealexander" target="_blank" rel="noopener">
         <span class="plat">TikTok</span>
-        <span class="handle">@djgeorgealexander</span>
-        <span style="color:var(--muted)" data-i18n="tt_desc">Cortes de mixes y momentos en vivo.</span>
+        <img class="social-sticker" src="tk-sticker.png" alt="@GeorgeAlexanderDJ TikTok sticker">
+        <span style="color:var(--muted)" data-i18n="tt_desc">Cortes de mixes y momentos en directo.</span>
         <span class="arrow">↗</span>
       </a>
     </div>
@@ -351,8 +347,8 @@
   <div class="wrap booking-grid">
     <div class="booking-copy">
       <p class="eyebrow" data-i18n="booking_eyebrow">Reservas abiertas</p>
-      <h2 data-i18n="booking_h2">Sesiones, 12PM – 00H</h2>
-      <p data-i18n="booking_p">Day parties, sesiones en rooftop, jardines, terrazas de hotel, brunchs de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
+      <h2 data-i18n="booking_h2">Sesiones, 12:00 – 00:00</h2>
+      <p data-i18n="booking_p">Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
       <div class="contact-row">
         <a href="mailto:georgealexanderdj@gmail.com?subject=Booking%20enquiry"><span data-i18n="label_email">Correo · georgealexanderdj@gmail.com</span><span>→</span></a>
         <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener"><span data-i18n="label_ig_dm">Instagram DM · @georgealexanderdj</span><span>→</span></a>
@@ -396,7 +392,7 @@
         </div>
 
         <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar solicitud</button>
-        <p class="form-note" data-i18n="form_note">Se abre tu app de correo con los datos ya rellenados — esta página todavía no tiene servidor.</p>
+        <p class="form-note" data-i18n="form_note">Se abrirá tu app de correo con los datos ya rellenados — esta página aún no tiene servidor.</p>
       </form>
     </div>
   </div>
@@ -419,7 +415,6 @@
     nav_booking:    { es: "Reservas", en: "Booking" },
     nav_cta:        { es: "Reservar", en: "Book a set" },
 
-    // Unificadas las horas a formatos naturales en cada idioma
     hero_eyebrow:   { es: "Reservas 12:00 – 00:00", en: "Booking 12 PM – 12 AM" },
     hero_sub:       { es: "Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunches y todo lo que venga después. Actualmente disponible para reservas.",
                        en: "Groove-first sets from midday into the night — rooftop terraces, garden parties, Sunday sessions, brunch floors, and everything after dark. Currently open for bookings." },
@@ -437,14 +432,12 @@
 
     socials_eyebrow:{ es: "Sígueme", en: "Follow along" },
     socials_h2:     { es: "Redes sociales", en: "On socials" },
-    // "Detrás de la cabina" suena mucho más natural en el entorno DJ de habla hispana
-    ig_desc:        { es: "Clips, flyers y el día a día en la cabina.", en: "Clips, flyers & behind-the-decks." },
+    ig_desc:        { es: "Clips, flyers y momentos en cabina.", en: "Clips, flyers & behind-the-decks." },
     tt_desc:        { es: "Cortes de mixes y momentos en directo.", en: "Mix cuts & live moments." },
 
     booking_eyebrow:{ es: "Reservas abiertas", en: "Now booking" },
     booking_h2:     { es: "Sesiones, 12:00 – 00:00", en: "Gigs, 12 PM – 12 AM" },
-    // Corregido "brunchs" por "brunches" y adaptado "rooftop" a "azoteas" para no saturar de anglicismos
-    booking_p:      { es: "Tardeos, sesiones en azoteas, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
+    booking_p:      { es: "Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
                        en: "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below." },
     label_email:    { es: "Correo · georgealexanderdj@gmail.com", en: "Email · georgealexanderdj@gmail.com" },
     label_ig_dm:    { es: "Instagram DM · @georgealexanderdj", en: "Instagram DM · @georgealexanderdj" },
@@ -453,7 +446,7 @@
     form_email_label:     { es: "Correo electrónico", en: "Email" },
     form_date_label:      { es: "Fecha del evento", en: "Date of event" },
     form_venue_label:     { es: "Local / evento", en: "Venue / event" },
-    form_venue_placeholder:{ es: "ej. azotea, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
+    form_venue_placeholder:{ es: "ej. terraza, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
     form_details_label:  { es: "Detalles", en: "Details" },
     form_details_placeholder:{ es: "Horarios, ambiente, número de invitados...", en: "Timings, vibe, guest count..." },
     captcha_error:  { es: "Eso no es correcto — inténtalo de nuevo.", en: "That's not quite right — try again." },
@@ -462,7 +455,7 @@
                        en: "Opens your email app with the details filled in — there's no server behind this page yet." }
   };
   var captchaTemplate = { es: "Comprobación rápida: ¿cuánto es {a} + {b}?", en: "Quick check: what is {a} + {b}?" };
-  var pageTitle = { es: "George Alexander DJ — Reservas 12:00 – 00:00", en: "George Alexander DJ — Booking 12PM–12AM" };
+  var pageTitle = { es: "George Alexander DJ — Reservas 12:00–00:00", en: "George Alexander DJ — Booking 12 PM – 12 AM" };
   var dialAria = { es: "Vinilo que marca el horario de reservas, de 12:00 a 00:00", en: "Vinyl dial marking the booking window, 12 PM through 12 AM" };
 
   var currentLang = 'es';
