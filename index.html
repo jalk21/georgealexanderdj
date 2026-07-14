@@ -155,14 +155,15 @@
   .mix-fallback{padding:18px 20px;font-size:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:var(--muted);}
 
   /* ---------- SOCIALS ---------- */
+  .section-sub{margin-top:14px;font-size:15px;line-height:1.6;color:var(--muted);max-width:48ch;}
   .socials{border-top:1px solid var(--line);}
   .social-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   @media(max-width:640px){.social-grid{grid-template-columns:1fr;}}
-  .social-card{border:1px solid var(--line);background:var(--bg-elev);padding:30px;text-decoration:none;color:var(--paper);display:flex;flex-direction:column;gap:14px;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;border-radius:4px;}
+  .social-card{border:1px solid var(--line);background:var(--bg-elev);padding:36px 30px;text-decoration:none;color:var(--paper);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:18px;min-height:140px;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;border-radius:4px;}
   .social-card:hover{transform:translateY(-3px);}
   .social-card .plat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
   .social-card .handle{font-family:'Unbounded',sans-serif;font-weight:800;font-size:24px;}
-  .social-sticker{width:100%;max-width:280px;height:auto;}
+  .social-sticker{width:100%;max-width:260px;height:auto;}
   .social-card .arrow{position:absolute;top:26px;right:26px;font-size:20px;color:var(--muted);}
   .social-card.ig{border-left:3px solid var(--blue);}
   .social-card.ig:hover{border-color:var(--blue);box-shadow:0 10px 30px -10px rgba(57,103,240,0.45);}
@@ -323,18 +324,17 @@
     <div class="section-head">
       <p class="eyebrow" data-i18n="socials_eyebrow">Sígueme</p>
       <h2 data-i18n="socials_h2">Redes sociales</h2>
+      <p class="section-sub" data-i18n="socials_desc">Mis directos, mi día a día y lo que hago en mi tiempo libre.</p>
     </div>
     <div class="social-grid">
       <a class="social-card ig" href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener">
         <span class="plat">Instagram</span>
         <img class="social-sticker" src="ig-sticker.png" alt="@GeorgeAlexanderDJ Instagram sticker">
-        <span style="color:var(--muted)" data-i18n="ig_desc">Clips, flyers y momentos en cabina.</span>
         <span class="arrow">↗</span>
       </a>
       <a class="social-card tt" href="https://www.tiktok.com/@djgeorgealexander" target="_blank" rel="noopener">
         <span class="plat">TikTok</span>
         <img class="social-sticker" src="tk-sticker.png" alt="@GeorgeAlexanderDJ TikTok sticker">
-        <span style="color:var(--muted)" data-i18n="tt_desc">Cortes de mixes y momentos en directo.</span>
         <span class="arrow">↗</span>
       </a>
     </div>
@@ -430,8 +430,8 @@
 
     socials_eyebrow:{ es: "Sígueme", en: "Follow along" },
     socials_h2:     { es: "Redes sociales", en: "On socials" },
-    ig_desc:        { es: "Clips, flyers y momentos en cabina.", en: "Clips, flyers & behind-the-decks." },
-    tt_desc:        { es: "Cortes de mixes y momentos en directo.", en: "Mix cuts & live moments." },
+    socials_desc:   { es: "Mis directos, mi día a día y lo que hago en mi tiempo libre.",
+                       en: "My live sets, my day-to-day, and what I get up to in my free time." },
 
     booking_eyebrow:{ es: "Reservas abiertas", en: "Now booking" },
     booking_h2:     { es: "Sesiones, 12:00 – 00:00", en: "Gigs, 12 PM – 12 AM" },
