@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">George Alexander DJ — Reservas 12PM–00H</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E1A;
+    --bg-elev:#131829;
+    --bg-elev-2:#1A2138;
+    --paper:#F2F4FA;
+    --muted:#8A93B8;
+    --line:#2A3252;
+    --blue:#3967F0;
+    --cyan:#35E0C8;
+    --amber:#FFC24B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  /* film-grain overlay, ties the page to a printed flyer rather than a flat gradient */
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:200;
+    opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:'Unbounded',sans-serif;margin:0;letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--cyan);display:inline-block;}
+
+  /* ---------- EQ BAR MOTIF ---------- */
+  .eq{display:flex;align-items:flex-end;gap:3px;height:26px;}
+  .eq span{
+    width:3px;border-radius:1px;
+    background:linear-gradient(180deg,var(--blue),var(--cyan));
+    animation:eqbeat 1.3s ease-in-out infinite;
+    transform-origin:bottom;
+  }
+  @keyframes eqbeat{0%,100%{transform:scaleY(0.25);}50%{transform:scaleY(1);}}
+  .eq span:nth-child(1){animation-delay:-0.1s;height:10px;}
+  .eq span:nth-child(2){animation-delay:-0.6s;height:22px;}
+  .eq span:nth-child(3){animation-delay:-0.9s;height:14px;}
+  .eq span:nth-child(4){animation-delay:-0.3s;height:26px;}
+  .eq span:nth-child(5){animation-delay:-1.1s;height:18px;}
+  .eq span:nth-child(6){animation-delay:-0.4s;height:9px;}
+  .eq span:nth-child(7){animation-delay:-0.8s;height:20px;}
+  @media (prefers-reduced-motion: reduce){.eq span{animation:none;transform:scaleY(0.6);}}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(20,16,27,0.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;}
+  .nav-name{font-family:'Unbounded',sans-serif;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:0.01em;}
+  .nav-name span{color:var(--blue);}
+  .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
+  .nav-links a{text-decoration:none;color:var(--muted);border-bottom:1px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s;}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--paper);border-color:var(--amber);}
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));color:#0B0E1A;font-weight:600;
+    padding:9px 16px;text-decoration:none;border-radius:2px;
+  }
+  @media(max-width:760px){.nav-links{display:none;}}
+
+  .lang-switch{display:flex;border:1px solid var(--line);border-radius:999px;padding:2px;gap:2px;}
+  .lang-btn{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    background:transparent;border:none;color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  .lang-btn.is-active{background:var(--blue);color:#F2F4FA;}
+  .lang-btn:not(.is-active):hover{color:var(--paper);}
+  .lang-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:1px;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 30px;position:relative;overflow:hidden;}
+  .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.35;z-index:0;animation:drift 18s ease-in-out infinite alternate;}
+  .glow.g1{width:360px;height:360px;background:var(--blue);top:-80px;right:120px;}
+  .glow.g2{width:320px;height:320px;background:var(--cyan);bottom:-60px;right:-40px;animation-delay:-6s;}
+  @keyframes drift{from{transform:translate(0,0);}to{transform:translate(-24px,20px);}}
+  @media (prefers-reduced-motion: reduce){.glow{animation:none;}}
+
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;position:relative;z-index:1;}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(42px,6.6vw,78px);line-height:0.96;font-weight:900;text-transform:uppercase;}
+  .hero h1 .hl{background:linear-gradient(90deg,var(--blue),var(--amber) 50%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;display:block;}
+  .hero-sub{margin-top:20px;font-size:17px;line-height:1.6;max-width:46ch;color:var(--muted);}
+  .genre-line{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;}
+  .genre-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;
+    border:1px solid var(--line);background:var(--bg-elev);padding:7px 13px;border-radius:999px;
+    display:flex;align-items:center;gap:7px;color:var(--paper);
+  }
+  .genre-tag i{width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;}
+  .genre-tag:nth-child(2) i{background:var(--cyan);}
+  .genre-tag:nth-child(3) i{background:var(--amber);}
+  .genre-tag:nth-child(4) i{background:var(--blue);}
+  .genre-tag:nth-child(5) i{background:var(--cyan);}
+  .hero-eq{margin-top:28px;}
+  .hero-ctas{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{display:inline-block;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:0.06em;padding:14px 22px;border-radius:2px;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;}
+  .btn-primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#0B0E1A;font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px -6px rgba(57,103,240,0.5);}
+  .btn-outline{border:1px solid var(--line);color:var(--paper);}
+  .btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  /* Signature: spinning vinyl dial marking the booking window */
+  .dial-wrap{position:relative;aspect-ratio:1/1;max-width:380px;margin:0 auto;z-index:1;}
+  .dial-wrap svg{width:100%;height:100%;position:relative;z-index:1;}
+  .dial-label{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+  .gear-sticker{
+    position:absolute;width:58%;max-width:230px;left:-8%;bottom:8%;
+    transform:rotate(-9deg);
+    filter:drop-shadow(0 10px 18px rgba(0,0,0,0.45));
+    z-index:2;pointer-events:none;
+  }
+  @media(max-width:860px){.gear-sticker{left:2%;bottom:0%;width:50%;}}
+  .vinyl{animation:spin 20s linear infinite;transform-origin:190px 190px;}
+  .tonearm{transform-origin:190px 190px;animation:sweep 24s linear infinite;}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @keyframes sweep{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){.vinyl,.tonearm{animation:none;}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-elev);overflow:hidden;white-space:nowrap;padding:14px 0;position:relative;z-index:1;}
+  .marquee-track{display:inline-block;padding-left:100%;animation:scroll 30s linear infinite;}
+  .marquee span{font-family:'Unbounded',sans-serif;font-weight:600;font-size:14px;margin:0 26px;text-transform:uppercase;letter-spacing:0.04em;}
+  .marquee span.dot{color:var(--amber);}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+  @media (prefers-reduced-motion: reduce){.marquee-track{animation:none;padding-left:0;}}
+
+  section{padding:80px 0;position:relative;z-index:1;}
+  .section-head{margin-bottom:36px;max-width:60ch;}
+  .section-head h2{font-size:clamp(26px,3.6vw,38px);margin-top:10px;text-transform:uppercase;}
+
+  /* ---------- MIXES ---------- */
+  .mixes{border-top:1px solid var(--line);}
+  .mix-embed{border:1px solid var(--line);background:var(--bg-elev);border-radius:4px;overflow:hidden;}
+  .mix-waveform{height:34px;display:flex;align-items:center;gap:2px;padding:0 16px;background:var(--bg-elev-2);}
+  .mix-waveform i{flex:1;background:linear-gradient(180deg,var(--blue),var(--cyan));opacity:0.55;border-radius:1px;}
+  .mix-embed iframe{width:100%;height:180px;border:0;display:block;}
+  .mix-fallback{padding:18px 20px;font-size:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:var(--muted);}
+
+  /* ---------- SOCIALS ---------- */
+  .socials{border-top:1px solid var(--line);}
+  .social-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:640px){.social-grid{grid-template-columns:1fr;}}
+  .social-card{border:1px solid var(--line);background:var(--bg-elev);padding:30px;text-decoration:none;color:var(--paper);display:flex;flex-direction:column;gap:14px;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;border-radius:4px;}
+  .social-card:hover{transform:translateY(-3px);}
+  .social-card .plat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+  .social-card .handle{font-family:'Unbounded',sans-serif;font-weight:800;font-size:24px;}
+  .social-sticker{width:100%;max-width:280px;height:auto;}
+  .social-card .arrow{position:absolute;top:26px;right:26px;font-size:20px;color:var(--muted);}
+  .social-card.ig{border-left:3px solid var(--blue);}
+  .social-card.ig:hover{border-color:var(--blue);box-shadow:0 10px 30px -10px rgba(57,103,240,0.45);}
+  .social-card.tt{border-left:3px solid var(--cyan);}
+  .social-card.tt:hover{border-color:var(--cyan);box-shadow:0 10px 30px -10px rgba(53,224,200,0.45);}
+
+  /* ---------- BOOKING ---------- */
+  .booking{border-top:1px solid var(--line);background:var(--bg-elev);}
+  .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media(max-width:860px){.booking-grid{grid-template-columns:1fr;}}
+  .booking-copy p{font-size:15px;line-height:1.7;color:var(--muted);max-width:44ch;}
+  .contact-row{display:flex;flex-direction:column;gap:14px;margin-top:26px;}
+  .contact-row a{font-family:'JetBrains Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;text-decoration:none;color:var(--paper);border-bottom:1px solid var(--line);padding-bottom:10px;display:flex;justify-content:space-between;transition:border-color .2s,color .2s;}
+  .contact-row a:hover{border-color:var(--amber);color:var(--amber);}
+
+  form{display:flex;flex-direction:column;gap:16px;}
+  label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);}
+  input,textarea{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;padding:12px 14px;border:1px solid var(--line);background:var(--bg-elev-2);color:var(--paper);width:100%;border-radius:2px;}
+  input::placeholder,textarea::placeholder{color:#6E5F80;}
+  input:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:1px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-error{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);margin:0;}
+  .submit-btn{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;font-size:13px;background:linear-gradient(90deg,var(--blue),var(--cyan));color:#0B0E1A;font-weight:600;border:none;padding:14px 22px;cursor:pointer;border-radius:2px;transition:transform .15s,box-shadow .15s;}
+  .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px -6px rgba(53,224,200,0.5);}
+  .form-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;position:relative;z-index:1;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-name" href="#top">GEORGE ALEXANDER<span>DJ</span></a>
+    <ul class="nav-links">
+      <li><a href="#mixes" data-i18n="nav_mixes">Mixes</a></li>
+      <li><a href="#socials" data-i18n="nav_socials">Redes</a></li>
+      <li><a href="#booking" data-i18n="nav_booking">Reservas</a></li>
+    </ul>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button type="button" class="lang-btn is-active" data-lang="es">ES</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <a class="nav-cta" href="#booking" data-i18n="nav_cta">Reservar</a>
+  </div>
+</nav>
+
+<div id="top" class="hero">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-i18n="hero_eyebrow">Reservas 12PM – 00H</p>
+      <h1>George Alexander<span class="hl">DJ</span></h1>
+      <p class="hero-sub" data-i18n="hero_sub">Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunchs y todo lo que venga después. Actualmente disponible para reservas.</p>
+      <div class="genre-line">
+        <span class="genre-tag"><i></i>Tech House</span>
+        <span class="genre-tag"><i></i>Afro House</span>
+        <span class="genre-tag"><i></i>Afro Latin House</span>
+        <span class="genre-tag"><i></i>Funky House</span>
+        <span class="genre-tag"><i></i>Nu Disco</span>
+      </div>
+      <div class="hero-eq eq" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#booking" data-i18n="cta_book">Reservar sesión</a>
+        <a class="btn btn-outline" href="#mixes" data-i18n="cta_listen">Escuchar mixes</a>
+      </div>
+    </div>
+    <div class="dial-wrap">
+      <svg viewBox="0 0 380 380" role="img" aria-label="Vinilo que marca el horario de reservas, de 12PM a 00H" id="dial-svg">
+        <defs>
+          <radialGradient id="vinylGrad" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stop-color="#2A2036"/>
+            <stop offset="80%" stop-color="#161020"/>
+            <stop offset="100%" stop-color="#0E0A15"/>
+          </radialGradient>
+        </defs>
+        <g class="vinyl">
+          <circle cx="190" cy="190" r="172" fill="url(#vinylGrad)" stroke="#2A3252" stroke-width="1"/>
+          <circle cx="190" cy="190" r="150" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="128" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="106" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="84" fill="#131829" stroke="#2A3252" stroke-width="1"/>
+          <text x="190" y="185" text-anchor="middle" font-family="Unbounded, sans-serif" font-size="12" font-weight="800" fill="#F2F4FA">G.A.DJ</text>
+          <text x="190" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" fill="#8A93B8">12PM–00H</text>
+        </g>
+        <!-- highlighted booking window ring -->
+        <circle cx="190" cy="190" r="163" fill="none" stroke="url(#ringGrad)" stroke-width="3"/>
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3967F0"/>
+            <stop offset="50%" stop-color="#FFC24B"/>
+            <stop offset="100%" stop-color="#35E0C8"/>
+          </linearGradient>
+        </defs>
+        <text x="150" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#F2F4FA">12PM</text>
+        <text x="212" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#35E0C8">00H</text>
+        <!-- tonearm / needle sweeping the full loop -->
+        <g class="tonearm">
+          <line x1="190" y1="190" x2="190" y2="30" stroke="#FFC24B" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="190" cy="30" r="6" fill="#FFC24B"/>
+        </g>
+        <circle cx="190" cy="190" r="9" fill="#F2F4FA"/>
+      </svg>
+      <p class="dial-label" data-i18n="dial_label">Horario de reservas · 12PM – 00H</p>
+    </div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Tech House</span><span class="dot">•</span>
+    <span>Afro House</span><span class="dot">•</span>
+    <span>Afro Latin House</span><span class="dot">•</span>
+    <span>Funky House</span><span class="dot">•</span>
+    <span>Nu Disco</span><span class="dot">•</span>
+    <span data-i18n="marquee_booking">Reservas Abiertas 12PM – 00H</span><span class="dot">•</span>
+    <span>Tech House</span><span class="dot">•</span>
+    <span>Afro House</span><span class="dot">•</span>
+    <span>Afro Latin House</span><span class="dot">•</span>
+    <span>Funky House</span><span class="dot">•</span>
+    <span>Nu Disco</span><span class="dot">•</span>
+    <span data-i18n="marquee_booking">Reservas Abiertas 12PM – 00H</span><span class="dot">•</span>
+  </div>
+</div>
+
+<section class="mixes" id="mixes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="mixes_eyebrow">Últimas sesiones</p>
+      <h2 data-i18n="mixes_h2">Mixes en Mixcloud</h2>
+    </div>
+    <div class="mix-embed">
+      <div class="mix-waveform" aria-hidden="true">
+        <i style="height:6px"></i><i style="height:14px"></i><i style="height:9px"></i><i style="height:20px"></i>
+        <i style="height:12px"></i><i style="height:24px"></i><i style="height:8px"></i><i style="height:17px"></i>
+        <i style="height:11px"></i><i style="height:22px"></i><i style="height:7px"></i><i style="height:15px"></i>
+        <i style="height:19px"></i><i style="height:9px"></i><i style="height:25px"></i><i style="height:13px"></i>
+        <i style="height:10px"></i><i style="height:18px"></i><i style="height:6px"></i><i style="height:21px"></i>
+      </div>
+      <iframe title="Mixcloud player — georgealexanderdj" width="100%" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=0&feed=%2Fgeorgealexanderdj%2F" frameborder="0" loading="lazy"></iframe>
+      <div class="mix-fallback">
+        <span data-i18n="mixes_fallback">¿El reproductor no carga? Mixcloud bloquea las inserciones hasta que la cuenta tenga subidas públicas.</span>
+        <a class="btn btn-outline" href="https://www.mixcloud.com/georgealexanderdj/" target="_blank" rel="noopener" data-i18n="mixes_open">Ver perfil de Mixcloud →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="socials" id="socials">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="socials_eyebrow">Sígueme</p>
+      <h2 data-i18n="socials_h2">Redes sociales</h2>
+    </div>
+    <div class="social-grid">
+      <a class="social-card ig" href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener">
+        <img class="social-sticker" src="ig-sticker.png" alt="@GeorgeAlexanderDJ Instagram sticker">
+        <span style="color:var(--muted)" data-i18n="ig_desc">Clips, flyers y detrás de la consola.</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="social-card tt" href="https://www.tiktok.com/@djgeorgealexander" target="_blank" rel="noopener">
+        <span class="plat">TikTok</span>
+        <span class="handle">@djgeorgealexander</span>
+        <span style="color:var(--muted)" data-i18n="tt_desc">Cortes de mixes y momentos en vivo.</span>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap booking-grid">
+    <div class="booking-copy">
+      <p class="eyebrow" data-i18n="booking_eyebrow">Reservas abiertas</p>
+      <h2 data-i18n="booking_h2">Sesiones, 12PM – 00H</h2>
+      <p data-i18n="booking_p">Day parties, sesiones en rooftop, jardines, terrazas de hotel, brunchs de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
+      <div class="contact-row">
+        <a href="mailto:georgealexanderdj@gmail.com?subject=Booking%20enquiry"><span data-i18n="label_email">Correo · georgealexanderdj@gmail.com</span><span>→</span></a>
+        <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener"><span data-i18n="label_ig_dm">Instagram DM · @georgealexanderdj</span><span>→</span></a>
+      </div>
+    </div>
+    <div>
+      <form id="booking-form">
+        <div class="field">
+          <label for="name" data-i18n="form_name_label">Tu nombre</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email" data-i18n="form_email_label">Correo electrónico</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="field">
+            <label for="date" data-i18n="form_date_label">Fecha del evento</label>
+            <input id="date" name="date" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="venue" data-i18n="form_venue_label">Local / evento</label>
+          <input id="venue" name="venue" type="text" placeholder="ej. terraza, jardín privado, brunch" data-i18n-placeholder="form_venue_placeholder">
+        </div>
+        <div class="field">
+          <label for="details" data-i18n="form_details_label">Detalles</label>
+          <textarea id="details" name="details" rows="4" placeholder="Horarios, ambiente, número de invitados..." data-i18n-placeholder="form_details_placeholder"></textarea>
+        </div>
+
+        <!-- Honeypot: hidden from real visitors, bots tend to fill every field -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="captcha-answer" id="captcha-question">Comprobación rápida: ¿cuánto es 4 + 7?</label>
+          <input id="captcha-answer" name="captcha-answer" type="text" inputmode="numeric" autocomplete="off" required>
+          <p class="form-error" id="captcha-error" hidden data-i18n="captcha_error">Eso no es correcto — inténtalo de nuevo.</p>
+        </div>
+
+        <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar solicitud</button>
+        <p class="form-note" data-i18n="form_note">Se abre tu app de correo con los datos ya rellenados — esta página todavía no tiene servidor.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>George Alexander DJ</span>
+    <span>Tech House · Afro House · Afro Latin House · Funky House · Nu Disco</span>
+  </div>
+</footer>
+
+<script>
+  // ---------- i18n ----------
+  // Page markup ships in Spanish by default (no flash of English on load).
+  // Switching languages swaps text via data-i18n / data-i18n-placeholder attributes.
+  var translations = {
+    nav_mixes:      { es: "Mixes",   en: "Mixes" },
+    nav_socials:    { es: "Redes",   en: "Socials" },
+    nav_booking:    { es: "Reservas", en: "Booking" },
+    nav_cta:        { es: "Reservar", en: "Book a set" },
+
+    hero_eyebrow:   { es: "Reservas 12PM – 00H", en: "Booking 12PM – 00H" },
+    hero_sub:       { es: "Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunchs y todo lo que venga después. Actualmente disponible para reservas.",
+                       en: "Groove-first sets from midday into the night — rooftop terraces, garden parties, Sunday sessions, brunch floors, and everything after dark. Currently open for bookings." },
+    cta_book:       { es: "Reservar sesión", en: "Book a set" },
+    cta_listen:     { es: "Escuchar mixes", en: "Listen to mixes" },
+    dial_label:     { es: "Horario de reservas · 12PM – 00H", en: "Booking window · 12PM – 00H" },
+
+    marquee_booking:{ es: "Reservas Abiertas 12PM – 00H", en: "Now Booking 12PM – 00H" },
+
+    mixes_eyebrow:  { es: "Últimas sesiones", en: "Latest sets" },
+    mixes_h2:       { es: "Mixes en Mixcloud", en: "Mixes on Mixcloud" },
+    mixes_fallback: { es: "¿El reproductor no carga? Mixcloud bloquea las inserciones hasta que la cuenta tenga subidas públicas.",
+                       en: "Player not loading? Mixcloud blocks embeds until the account has public uploads." },
+    mixes_open:     { es: "Ver perfil de Mixcloud →", en: "Open Mixcloud profile →" },
+
+    socials_eyebrow:{ es: "Sígueme", en: "Follow along" },
+    socials_h2:     { es: "Redes sociales", en: "On socials" },
+    ig_desc:        { es: "Clips, flyers y detrás de la consola.", en: "Clips, flyers & behind-the-decks." },
+    tt_desc:        { es: "Cortes de mixes y momentos en vivo.", en: "Mix cuts & live moments." },
+
+    booking_eyebrow:{ es: "Reservas abiertas", en: "Now booking" },
+    booking_h2:     { es: "Sesiones, 12PM – 00H", en: "Gigs, 12PM – 00H" },
+    booking_p:      { es: "Day parties, sesiones en rooftop, jardines, terrazas de hotel, brunchs de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
+                       en: "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below." },
+    label_email:    { es: "Correo · georgealexanderdj@gmail.com", en: "Email · georgealexanderdj@gmail.com" },
+    label_ig_dm:    { es: "Instagram DM · @georgealexanderdj", en: "Instagram DM · @georgealexanderdj" },
+
+    form_name_label:      { es: "Tu nombre", en: "Your name" },
+    form_email_label:     { es: "Correo electrónico", en: "Email" },
+    form_date_label:      { es: "Fecha del evento", en: "Date of event" },
+    form_venue_label:     { es: "Local / evento", en: "Venue / event" },
+    form_venue_placeholder:{ es: "ej. terraza, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
+    form_details_label:  { es: "Detalles", en: "Details" },
+    form_details_placeholder:{ es: "Horarios, ambiente, número de invitados...", en: "Timings, vibe, guest count..." },
+    captcha_error:  { es: "Eso no es correcto — inténtalo de nuevo.", en: "That's not quite right — try again." },
+    submit_btn:     { es: "Enviar solicitud", en: "Send enquiry" },
+    form_note:      { es: "Se abre tu app de correo con los datos ya rellenados — esta página todavía no tiene servidor.",
+                       en: "Opens your email app with the details filled in — there's no server behind this page yet." }
+  };
+  var captchaTemplate = { es: "Comprobación rápida: ¿cuánto es {a} + {b}?", en: "Quick check: what is {a} + {b}?" };
+  var pageTitle = { es: "George Alexander DJ — Reservas 12PM–00H", en: "George Alexander DJ — Booking 12PM–00H" };
+  var dialAria = { es: "Vinilo que marca el horario de reservas, de 12PM a 00H", en: "Vinyl dial marking the booking window, 12 PM through 00H" };
+
+  var currentLang = 'es';
+
+  function applyLanguage(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.getElementById('page-title').textContent = pageTitle[lang];
+    document.getElementById('dial-svg').setAttribute('aria-label', dialAria[lang]);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (translations[key]) { el.textContent = translations[key][lang]; }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (translations[key]) { el.placeholder = translations[key][lang]; }
+    });
+
+    document.getElementById('captcha-question').textContent =
+      captchaTemplate[lang].replace('{a}', captchaA).replace('{b}', captchaB);
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLanguage(btn.getAttribute('data-lang')); });
+  });
+
+  // ---------- Captcha ----------
+  // Simple client-side math captcha. There's no server behind this page,
+  // so this can't stop a determined human — it's here to filter out the
+  // automated form-fillers that scrape static pages for mailto links.
+  var captchaA = Math.floor(Math.random() * 8) + 2;   // 2-9
+  var captchaB = Math.floor(Math.random() * 8) + 2;   // 2-9
+  var captchaAnswer = captchaA + captchaB;
+  document.getElementById('captcha-question').textContent =
+    captchaTemplate[currentLang].replace('{a}', captchaA).replace('{b}', captchaB);
+
+  document.getElementById('booking-form').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var errorEl = document.getElementById('captcha-error');
+    errorEl.hidden = true;
+
+    // Honeypot: if this hidden field has been filled, silently drop it.
+    var honeypot = document.getElementById('company').value;
+    if (honeypot) { return; }
+
+    var givenAnswer = document.getElementById('captcha-answer').value.trim();
+    if (parseInt(givenAnswer, 10) !== captchaAnswer) {
+      errorEl.hidden = false;
+      return;
+    }
+
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var date = document.getElementById('date').value;
+    var venue = document.getElementById('venue').value;
+    var details = document.getElementById('details').value;
+    var body = "Name: " + name + "%0AEmail: " + email + "%0ADate: " + date + "%0AVenue/event: " + venue + "%0A%0ADetails:%0A" + details;
+    window.location.href = "mailto:georgealexanderdj@gmail.com?subject=Booking%20enquiry&body=" + body;
+  });
+</script>
+
+</body>
+</html>
