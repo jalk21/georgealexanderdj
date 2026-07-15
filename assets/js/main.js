@@ -1,8 +1,4 @@
 // ---------- Include loader ----------
-// Fetches each [data-include] fragment from /includes and swaps it into place.
-// Requires the page to be served over http(s) — fetch() of local files will be
-// blocked by the browser's CORS policy if you just double-click index.html.
-// Any static host (Netlify, GitHub Pages, nginx, Apache, etc.) works fine.
 function loadIncludes() {
     var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-include]'));
     var promises = nodes.map(function(el) {
@@ -14,7 +10,7 @@ function loadIncludes() {
             })
             .then(function(html) { el.outerHTML = html; })
             .catch(function(err) {
-                el.outerHTML = '<!-- include failed: ' + path + ' -->';
+                el.outerHTML = '';
                 console.error(err);
             });
     });
@@ -27,24 +23,22 @@ loadIncludes().then(initPage);
 function initPage() {
 
     // ---------- i18n ----------
-    // Page markup ships in Spanish by default (no flash of English on load).
-    // Switching languages swaps text via data-i18n / data-i18n-placeholder attributes.
     var translations = {
+        nav_aboutme: { es: "Sobre mi", en: "About me" },
         nav_mixes: { es: "Mixes", en: "Mixes" },
         nav_socials: { es: "Redes", en: "Socials" },
         nav_booking: { es: "Contacto", en: "Contact" },
-        nav_cta: { es: "Reservar", en: "Book a set" },
+        nav_cta: { es: "Contact", en: "Contact" },
 
-        hero_eyebrow: { es: "Reservas 12:00 – 00:00", en: "Booking 12 PM – 12 AM" },
+        hero_eyebrow: { es: "Horario de contratación 12h – 00h", en: "Booking window 12 PM – 12 AM" },
         hero_sub: {
             es: "Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunches y todo lo que venga después. Actualmente disponible para reservas.",
             en: "Groove-first sets from midday into the night — rooftop terraces, garden parties, Sunday sessions, brunch floors, and everything after dark. Currently open for bookings."
         },
-        cta_book: { es: "Reservar sesión", en: "Book a set" },
         cta_listen: { es: "Escuchar mixes", en: "Listen to mixes" },
-        dial_label: { es: "Horario de reservas · 12:00 – 00:00", en: "Booking window · 12 PM – 12 AM" },
+        dial_label: { es: "Horario de contratación · 12h – 00h", en: "Booking window · 12 PM – 12 AM" },
 
-        marquee_booking: { es: "Reservas Abiertas 12:00 – 00:00", en: "Now Booking 12 PM – 12 AM" },
+        marquee_booking: { es: "Horario de contratación 12h – 00h", en: "Booking window 12 PM – 12 AM" },
 
         mixes_eyebrow: { es: "Últimas sesiones", en: "Latest sets" },
         mixes_h2: { es: "Mixes en Mixcloud", en: "Mixes on Mixcloud" },
@@ -62,13 +56,13 @@ function initPage() {
         },
 
         booking_eyebrow: { es: "Reservas abiertas", en: "Now booking" },
-        booking_h2: { es: "Sesiones, 12:00 – 00:00", en: "Gigs, 12 PM – 12 AM" },
+        booking_h2: { es: "Sesiones, 12h – 00h", en: "Gigs, 12 PM – 12 AM" },
         booking_p: {
             es: "Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
             en: "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below."
         },
-        label_email: { es: "Correo", en: "Email" },
-        label_ig_dm: { es: "Instagram DM · @georgealexanderdj", en: "Instagram DM · @georgealexanderdj" },
+        label_email: { es: "Contactar usando correo electrónico", en: "Contact using e-mail address" },
+        label_ig_dm: { es: "Contactar usando Instagram DM", en: "Contact using Instagram DM" },
 
         form_name_label: { es: "Tu nombre", en: "Your name" },
         form_email_label: { es: "Correo electrónico", en: "Email" },
@@ -77,24 +71,34 @@ function initPage() {
         form_venue_placeholder: { es: "ej. terraza, jardín privado, brunch", en: "e.g. rooftop bar, private garden, brunch" },
         form_details_label: { es: "Detalles", en: "Details" },
         form_details_placeholder: { es: "Horarios, ambiente, número de invitados...", en: "Timings, vibe, guest count..." },
-        captcha_error: { es: "Por favor, completa la verificación de seguridad antes de enviar.", en: "Please complete the security verification before submitting." },
+
+        // Nuevas claves del formulario Web3Forms
+        form_success_title: { es: "¡Solicitud enviada correctamente!", en: "Booking Request Sent Successfully!" },
+        form_success_text: { es: "Gracias por contactar. Revisaré los detalles del evento y te responderé lo antes posible.", en: "Thank you for reaching out. I will review your event details and get back to you as soon as possible." },
+        captcha_error: { es: "Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.", en: "There was a problem submitting the form. Please try again." },
+        network_error: { es: "Error de conexión. Asegúrate de tener internet e inténtalo más tarde.", en: "Connection error. Please check your internet connection and try again." },
+
         submit_btn: { es: "Enviar solicitud", en: "Send enquiry" },
         form_note: {
-            es: "Se abrirá tu app de correo con los datos ya rellenados — esta página aún no tiene servidor.",
-            en: "Opens your email app with the details filled in — there's no server behind this page yet."
+            es: "Tu solicitud se enviará de forma segura y directa por correo electrónico.",
+            en: "Your request will be sent securely and directly via email."
         }
     };
-    var captchaTemplate = { es: "Comprobación rápida: ¿cuánto es {a} + {b}?", en: "Quick check: what is {a} + {b}?" };
-    var pageTitle = { es: "George Alexander DJ — Reservas 12:00–00:00", en: "George Alexander DJ — Booking 12 PM – 12 AM" };
-    var dialAria = { es: "Vinilo que marca el horario de reservas, de 12:00 a 00:00", en: "Vinyl dial marking the booking window, 12 PM through 12 AM" };
+
+    var pageTitle = { es: "George Alexander DJ — Reservas 12h – 00h", en: "George Alexander DJ — Booking 12 PM – 12 AM" };
+    var dialAria = { es: "Vinilo que marca el horario de reservas, de 12h a 00h", en: "Vinyl dial marking the booking window, 12 PM through 12 AM" };
 
     var currentLang = 'es';
 
     function applyLanguage(lang) {
         currentLang = lang;
         document.documentElement.lang = lang;
-        document.getElementById('page-title').textContent = pageTitle[lang];
-        document.getElementById('dial-svg').setAttribute('aria-label', dialAria[lang]);
+
+        var titleEl = document.getElementById('page-title');
+        if (titleEl) titleEl.textContent = pageTitle[lang];
+
+        var dialEl = document.getElementById('dial-svg');
+        if (dialEl) dialEl.setAttribute('aria-label', dialAria[lang]);
 
         document.querySelectorAll('[data-i18n]').forEach(function(el) {
             var key = el.getAttribute('data-i18n');
@@ -105,57 +109,84 @@ function initPage() {
             if (translations[key]) { el.placeholder = translations[key][lang]; }
         });
 
-        document.getElementById('captcha-question').textContent =
-            captchaTemplate[lang].replace('{a}', captchaA).replace('{b}', captchaB);
-
         document.querySelectorAll('.lang-btn').forEach(function(btn) {
             btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
         });
     }
 
+    // ---------- Lógica interna para manejar el envío del Formulario ----------
+    function setupBookingForm() {
+        var form = document.getElementById('booking-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(form);
+            var url = 'https://api.web3forms.com/submit';
+            var submitBtn = form.querySelector('.submit-btn');
+            var captchaError = document.getElementById('captcha-error');
+
+            if (captchaError) {
+                captchaError.hidden = true;
+            }
+
+            var originalBtnText = submitBtn ? submitBtn.innerText : '...';
+            if (submitBtn) {
+                submitBtn.innerText = '...';
+                submitBtn.disabled = true;
+            }
+
+            fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    if (data.success) {
+                        form.innerHTML = `
+                        <div class="form-success-message" style="text-align: center; padding: 2rem;">
+                            <h3 style="color: #fff; margin-bottom: 1rem;" data-i18n="form_success_title">¡Solicitud enviada correctamente!</h3>
+                            <p style="color: #ccc;" data-i18n="form_success_text">Gracias por contactar. Revisaré los detalles del evento y te responderé lo antes posible.</p>
+                        </div>
+                    `;
+                        // Forzamos la traducción inmediata del nuevo bloque de éxito inyectado
+                        applyLanguage(currentLang);
+                    } else {
+                        if (captchaError) {
+                            captchaError.setAttribute('data-i18n', 'captcha_error');
+                            captchaError.textContent = translations['captcha_error'][currentLang];
+                            captchaError.hidden = false;
+                        }
+                        if (submitBtn) {
+                            submitBtn.innerText = originalBtnText;
+                            submitBtn.disabled = false;
+                        }
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                    if (captchaError) {
+                        captchaError.setAttribute('data-i18n', 'network_error');
+                        captchaError.textContent = translations['network_error'][currentLang];
+                        captchaError.hidden = false;
+                    }
+                    if (submitBtn) {
+                        submitBtn.innerText = originalBtnText;
+                        submitBtn.disabled = false;
+                    }
+                });
+        });
+    }
+
+    // Inicializar manejadores de botones de idioma
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
         btn.addEventListener('click', function() { applyLanguage(btn.getAttribute('data-lang')); });
     });
 
-    // ---------- Captcha ----------
-    // Simple client-side math captcha. There's no server behind this page,
-    // so this can't stop a determined human — it's here to filter out the
-    // automated form-fillers that scrape static pages for mailto links.
-    var captchaA = Math.floor(Math.random() * 8) + 2; // 2-9
-    var captchaB = Math.floor(Math.random() * 8) + 2; // 2-9
-    var captchaAnswer = captchaA + captchaB;
+    // Traducir la página completa por primera vez con el idioma por defecto
+    applyLanguage('es');
 
-    // ---------- Contact email ----------
-    // Built at runtime rather than left as a plain string in the page source —
-    // keeps the address off basic scrapers that scan static HTML/JS for "name@domain" patterns.
-    var contactEmail = ['contact', 'georgealexanderdj.com'].join('@');
-    document.getElementById('email-link').href = 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Contact enquiry');
-
-    document.getElementById('captcha-question').textContent =
-        captchaTemplate[currentLang].replace('{a}', captchaA).replace('{b}', captchaB);
-
-    document.getElementById('booking-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        var errorEl = document.getElementById('captcha-error');
-        errorEl.hidden = true;
-
-        // Honeypot: if this hidden field has been filled, silently drop it.
-        var honeypot = document.getElementById('company').value;
-        if (honeypot) { return; }
-
-        var givenAnswer = document.getElementById('captcha-answer').value.trim();
-        if (parseInt(givenAnswer, 10) !== captchaAnswer) {
-            errorEl.hidden = false;
-            return;
-        }
-
-        var name = document.getElementById('name').value;
-        var email = document.getElementById('email').value;
-        var date = document.getElementById('date').value;
-        var venue = document.getElementById('venue').value;
-        var details = document.getElementById('details').value;
-        var body = "Name: " + name + "%0AEmail: " + email + "%0ADate: " + date + "%0AVenue/event: " + venue + "%0A%0ADetails:%0A" + details;
-        window.location.href = "mailto:" + contactEmail + "?subject=" + encodeURIComponent('Contact enquiry') + "&body=" + body;
-    });
+    // Configurar y preparar el formulario (ahora sí puede leer applyLanguage y currentLang)
+    setupBookingForm();
 }
