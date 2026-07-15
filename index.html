@@ -71,8 +71,8 @@
   nav{position:sticky;top:0;z-index:50;background:rgba(20,16,27,0.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;}
   .nav-name{display:flex;align-items:center;text-decoration:none;}
-  .nav-logo{height:92px;width:auto;display:block;}
-  @media(max-width:600px){.nav-logo{height:64px;}}
+  .nav-logo{height:92px;width:auto;display:block;margin-left:18px;}
+  @media(max-width:600px){.nav-logo{height:64px;margin-left:10px;}}
   .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a{text-decoration:none;color:var(--muted);border-bottom:1px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s;}
   .nav-links a:hover,.nav-links a:focus-visible{color:var(--paper);border-color:var(--amber);}
@@ -206,7 +206,7 @@
     <ul class="nav-links">
       <li><a href="#mixes" data-i18n="nav_mixes">Mixes</a></li>
       <li><a href="#socials" data-i18n="nav_socials">Redes</a></li>
-      <li><a href="#booking" data-i18n="nav_booking">Reservas</a></li>
+      <li><a href="#booking" data-i18n="nav_booking">Contacto</a></li>
     </ul>
     <div class="lang-switch" role="group" aria-label="Idioma / Language">
       <button type="button" class="lang-btn is-active" data-lang="es">ES</button>
@@ -349,7 +349,7 @@
       <h2 data-i18n="booking_h2">Sesiones, 12:00 – 00:00</h2>
       <p data-i18n="booking_p">Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
       <div class="contact-row">
-        <a href="mailto:georgealexanderdj@gmail.com?subject=Booking%20enquiry"><span data-i18n="label_email">Correo · georgealexanderdj@gmail.com</span><span>→</span></a>
+        <a href="#" id="email-link"><span data-i18n="label_email">Correo</span><span>→</span></a>
         <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener"><span data-i18n="label_ig_dm">Instagram DM · @georgealexanderdj</span><span>→</span></a>
       </div>
     </div>
@@ -411,7 +411,7 @@
   var translations = {
     nav_mixes:      { es: "Mixes",   en: "Mixes" },
     nav_socials:    { es: "Redes",   en: "Socials" },
-    nav_booking:    { es: "Reservas", en: "Booking" },
+    nav_booking:    { es: "Contacto", en: "Contact" },
     nav_cta:        { es: "Reservar", en: "Book a set" },
 
     hero_eyebrow:   { es: "Reservas 12:00 – 00:00", en: "Booking 12 PM – 12 AM" },
@@ -438,7 +438,7 @@
     booking_h2:     { es: "Sesiones, 12:00 – 00:00", en: "Gigs, 12 PM – 12 AM" },
     booking_p:      { es: "Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.",
                        en: "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below." },
-    label_email:    { es: "Correo · georgealexanderdj@gmail.com", en: "Email · georgealexanderdj@gmail.com" },
+    label_email:    { es: "Correo", en: "Email" },
     label_ig_dm:    { es: "Instagram DM · @georgealexanderdj", en: "Instagram DM · @georgealexanderdj" },
 
     form_name_label:      { es: "Tu nombre", en: "Your name" },
@@ -493,6 +493,11 @@
   var captchaA = Math.floor(Math.random() * 8) + 2;   // 2-9
   var captchaB = Math.floor(Math.random() * 8) + 2;   // 2-9
   var captchaAnswer = captchaA + captchaB;
+  // Built at runtime rather than left as a plain string in the page source —
+  // keeps the address off basic scrapers that scan static HTML/JS for "name@domain" patterns.
+  var contactEmail = ['contact', 'georgealexanderdj.com'].join('@');
+  document.getElementById('email-link').href = 'mailto:' + contactEmail + '?subject=' + encodeURIComponent('Contact enquiry');
+
   document.getElementById('captcha-question').textContent =
     captchaTemplate[currentLang].replace('{a}', captchaA).replace('{b}', captchaB);
 
@@ -518,7 +523,7 @@
     var venue = document.getElementById('venue').value;
     var details = document.getElementById('details').value;
     var body = "Name: " + name + "%0AEmail: " + email + "%0ADate: " + date + "%0AVenue/event: " + venue + "%0A%0ADetails:%0A" + details;
-    window.location.href = "mailto:georgealexanderdj@gmail.com?subject=Booking%20enquiry&body=" + body;
+    window.location.href = "mailto:" + contactEmail + "?subject=" + encodeURIComponent('Contact enquiry') + "&body=" + body;
   });
 </script>
 
