@@ -1,0 +1,54 @@
+<section class="booking" id="booking">
+  <div class="wrap booking-grid">
+    <div class="booking-copy">
+      <p class="eyebrow" data-i18n="booking_eyebrow">Reservas abiertas</p>
+      <h2 data-i18n="booking_h2">Sesiones, 12:00 – 00:00</h2>
+      <p data-i18n="booking_p">Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
+      <div class="contact-row">
+        <a href="#" id="email-link"><span data-i18n="label_email">Correo</span><span>→</span></a>
+        <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener"><span data-i18n="label_ig_dm">Instagram DM · @georgealexanderdj</span><span>→</span></a>
+      </div>
+    </div>
+    <div>
+      <form id="booking-form">
+        <div class="field">
+          <label for="name" data-i18n="form_name_label">Tu nombre</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email" data-i18n="form_email_label">Correo electrónico</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="field">
+            <label for="date" data-i18n="form_date_label">Fecha del evento</label>
+            <input id="date" name="date" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="venue" data-i18n="form_venue_label">Local / evento</label>
+          <input id="venue" name="venue" type="text" placeholder="ej. terraza, jardín privado, brunch" data-i18n-placeholder="form_venue_placeholder">
+        </div>
+        <div class="field">
+          <label for="details" data-i18n="form_details_label">Detalles</label>
+          <textarea id="details" name="details" rows="4" placeholder="Horarios, ambiente, número de invitados..." data-i18n-placeholder="form_details_placeholder"></textarea>
+        </div>
+
+        <!-- Honeypot: hidden from real visitors, bots tend to fill every field -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="captcha-answer" id="captcha-question">Comprobación rápida: ¿cuánto es 4 + 7?</label>
+          <input id="captcha-answer" name="captcha-answer" type="text" inputmode="numeric" autocomplete="off" required>
+          <p class="form-error" id="captcha-error" hidden data-i18n="captcha_error">Eso no es correcto — inténtalo de nuevo.</p>
+        </div>
+
+        <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar solicitud</button>
+        <p class="form-note" data-i18n="form_note">Se abrirá tu app de correo con los datos ya rellenados — esta página aún no tiene servidor.</p>
+      </form>
+    </div>
+  </div>
+</section>

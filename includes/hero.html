@@ -1,0 +1,63 @@
+<div id="top" class="hero">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-i18n="hero_eyebrow">Reservas 12:00 – 00:00</p>
+      <h1>George Alexander<span class="hl">DJ</span></h1>
+      <p class="hero-sub" data-i18n="hero_sub">Sesiones con groove desde el mediodía hasta la noche — terrazas, jardines, sesiones de domingo, brunches y todo lo que venga después. Actualmente disponible para reservas.</p>
+      <div class="genre-line">
+        <span class="genre-tag"><i></i>Tech House</span>
+        <span class="genre-tag"><i></i>Afro House</span>
+        <span class="genre-tag"><i></i>Afro Latin House</span>
+        <span class="genre-tag"><i></i>Funky House</span>
+        <span class="genre-tag"><i></i>Nu Disco</span>
+      </div>
+      <div class="hero-eq eq" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#booking" data-i18n="cta_book">Reservar sesión</a>
+        <a class="btn btn-outline" href="#mixes" data-i18n="cta_listen">Escuchar mixes</a>
+      </div>
+    </div>
+    <div class="dial-wrap">
+      <svg viewBox="0 0 380 380" role="img" aria-label="Vinilo que marca el horario de reservas, de 12:00 a 00:00" id="dial-svg">
+        <defs>
+          <radialGradient id="vinylGrad" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stop-color="#2A2036"/>
+            <stop offset="80%" stop-color="#161020"/>
+            <stop offset="100%" stop-color="#0E0A15"/>
+          </radialGradient>
+        </defs>
+        <g class="vinyl">
+          <circle cx="190" cy="190" r="172" fill="url(#vinylGrad)" stroke="#2A3252" stroke-width="1"/>
+          <circle cx="190" cy="190" r="150" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="128" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="106" fill="none" stroke="#2A3252" stroke-width="0.6" opacity="0.7"/>
+          <circle cx="190" cy="190" r="84" fill="#131829" stroke="#2A3252" stroke-width="1"/>
+          <text x="190" y="185" text-anchor="middle" font-family="Unbounded, sans-serif" font-size="12" font-weight="800" fill="#F2F4FA">G.A.DJ</text>
+          <text x="190" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" fill="#8A93B8">12:00–00:00</text>
+        </g>
+        <!-- highlighted booking window ring -->
+        <circle cx="190" cy="190" r="163" fill="none" stroke="url(#ringGrad)" stroke-width="3"/>
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3967F0"/>
+            <stop offset="50%" stop-color="#FFC24B"/>
+            <stop offset="100%" stop-color="#35E0C8"/>
+          </linearGradient>
+        </defs>
+        <text x="150" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#F2F4FA">12:00</text>
+        <text x="212" y="16" font-family="JetBrains Mono, monospace" font-size="11" fill="#35E0C8">00:00</text>
+        <!-- tonearm / needle sweeping the full loop -->
+        <g class="tonearm">
+          <line x1="190" y1="190" x2="190" y2="30" stroke="#FFC24B" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="190" cy="30" r="6" fill="#FFC24B"/>
+        </g>
+        <circle cx="190" cy="190" r="9" fill="#F2F4FA"/>
+      </svg>
+      <p class="dial-label" data-i18n="dial_label">Horario de reservas · 12:00 – 00:00</p>
+    </div>
+  </div>
+</div>
