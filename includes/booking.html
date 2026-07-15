@@ -13,35 +13,38 @@
             <form id="booking-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="56d0fbc7-cd66-434f-8894-c7751caae520">
                 <input type="hidden" name="subject" value="Nuevo contacto George Alexander DJ">
+                <input type="hidden" name="from_name" value="George Alexander DJ">
+                <input type="hidden" name="theme" value="basic">
+                <input type="hidden" name="cc" value="">
                 <div class="field">
                     <label for="name" data-i18n="form_name_label">Tu nombre</label>
-                    <input id="name" name="name" type="text" required>
+                    <input id="name" name="Nombre" type="text" required>
                 </div>
                 <div class="field-row">
                     <div class="field">
                         <label for="email" data-i18n="form_email_label">Correo electrónico</label>
-                        <input id="email" name="email" type="email" required>
+                        <input id="email" name="Email" type="email" required>
                     </div>
                     <div class="field">
                         <label for="date" data-i18n="form_date_label">Fecha del evento</label>
-                        <input id="date" name="date" type="date">
+                        <input id="date" name="Fecha del evento" type="date">
                     </div>
                 </div>
                 <div class="field">
                     <label for="venue" data-i18n="form_venue_label">Local / evento</label>
-                    <input id="venue" name="venue" type="text" placeholder="ej. terraza, jardín privado, brunch" data-i18n-placeholder="form_venue_placeholder">
+                    <input id="venue" name="Local o Evento" type="text" placeholder="ej. terraza, restaurante, jardín privado, brunch, tardeo" data-i18n-placeholder="form_venue_placeholder">
                 </div>
                 <div class="field">
                     <label for="details" data-i18n="form_details_label">Detalles</label>
-                    <textarea id="details" name="details" rows="4" placeholder="Horarios, ambiente, número de invitados..." data-i18n-placeholder="form_details_placeholder"></textarea>
+                    <textarea id="details" name="Detalles" rows="4" placeholder="Horarios, género(s) musical(es), ambiente, promedio de edad esperado..." data-i18n-placeholder="form_details_placeholder"></textarea>
                 </div>
                 <div class="hp-field" aria-hidden="true">
                     <label for="company">Company</label>
                     <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
                 </div>
 
-                <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar solicitud</button>
-                <p class="form-note" data-i18n="form_note">Tu solicitud se enviará de forma segura y directa por correo electrónico.</p>
+                <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar</button>
+                <p class="form-note" data-i18n="form_note">Tu mensaje se enviará de forma segura y directa por correo electrónico.</p>
                 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
                 <div class="field">
