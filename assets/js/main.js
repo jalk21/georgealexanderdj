@@ -57,6 +57,11 @@ function initPage() {
                     if (translations[key]) { el.textContent = translations[key]; }
                 });
 
+                document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n-html');
+                    if (translations[key]) { el.innerHTML = translations[key]; }
+                });
+
                 // Traducimos placeholders
                 document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
                     var key = el.getAttribute('data-i18n-placeholder');
