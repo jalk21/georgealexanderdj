@@ -19,8 +19,8 @@
     "booking_eyebrow": "Now booking",
     "booking_h2": "Gigs, 12 PM – 12 AM",
     "booking_p": "Day parties, rooftop sessions, garden bars, hotel terraces, Sunday brunch floors, festival day-stages, and sets running on into the night — get in touch below.",
-    "label_email": "Contact using e-mail address",
-    "label_ig_dm": "Contact using Instagram DM",
+    "label_email": "Send Email",
+    "label_ig_dm": "Send Instagram DM",
     "form_name_label": "Your name",
     "form_email_label": "Email",
     "form_date_label": "Date of event",
@@ -37,8 +37,8 @@
     "about_eyebrow": "The Selector",
     "about_h2": "About me",
     "about_img_alt": "George Alexander DJ portrait",
-    "about_bio_p1": "My journey behind the decks started about a year and a half ago, almost by accident—fueled by curiosity and a deep love for making people move. What began as a bedroom hobby quickly turned into a serious passion. This led me to professional training at the Inted Music School in Madrid to refine my technique and truly understand the crowd from a different perspective.",
-    "about_bio_p2": "My sweet spot and signature sound lie within House, Techno, and their most vibrant subgenres: from the organic rhythms of Afro House and Latin Afro to the driving grooves of Tech House and Funky House.",
-    "about_bio_p3": "I love curation and building the energy of a room. That is why I specialize in progressive sets—the kind that start by setting a warm, elegant backdrop for restaurant dinners, lunches, or afternoon sessions (tardeos), and gradually build up to high-energy House beats that get everyone off their seats. I also feel right at home at private events and parties, where connecting with the crowd is everything.",
-    "about_bio_p4": "What’s next? I am currently exploring new horizons, blending my electronic roots with the crowd-pleasing energy of commercial music to create sets that are even more dynamic, versatile, and ready for any dancefloor. If you are looking for a soundtrack that evolves with your event, let’s connect. See you on the dancefloor!"
+    "about_bio_p1": "My journey behind the decks began almost by chance, as a hobby that soon turned into a passion. To take it to the next level, I trained professionally at the <strong>Inted Music School in Madrid</strong>, refining my technique and developing a deeper vision of music.",
+    "about_bio_p2": "My comfort zone lies within <strong>House, Techno, and their most vibrant genres</strong>: from the <em>groove</em> of <em>Funky House</em> and <em>Tech House</em>, to the organic atmosphere of <em>Afro House</em> and <em>Latin Afro</em>.",
+    "about_bio_p3": "I am passionate about <strong>creating the perfect atmosphere</strong> for every occasion. That is why I specialize in <strong>progressive sets</strong>: those that start by sound-tracking an elegant daytime session or dinner, and gradually build up the energy until staying seated is no longer an option. Additionally, I adapt to private events by blending these electronic roots with the energy of commercial music.",
+    "about_bio_p4": "Have a date in mind? <strong>Tell me your idea</strong> and let's start planning the session."
 }

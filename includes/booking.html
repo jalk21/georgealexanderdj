@@ -2,13 +2,22 @@
     <div class="wrap booking-grid">
         <div class="booking-copy">
             <p class="eyebrow" data-i18n="booking_eyebrow">Reservas abiertas</p>
-            <h2 data-i18n="booking_h2">Sesiones, 12:00 – 00:00</h2>
+            <h2 data-i18n="booking_h2">Sesiones, 12h – 00h</h2>
             <p data-i18n="booking_p">Tardeos, sesiones en rooftop, jardines, terrazas de hotel, brunches de domingo, escenarios diurnos de festivales y sesiones que se alargan hasta la noche — escríbeme.</p>
+            
             <div class="contact-row">
-                <a href="#" id="email-link"><span data-i18n="label_email">Correo</span><span>→</span></a>
-                <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener"><span data-i18n="label_ig_dm">Instagram DM · @georgealexanderdj</span><span>→</span></a>
+                <!-- He simplificado las etiquetas para que no generen textos masivos en la web -->
+                <a href="#" id="email-link">
+                    <span data-i18n="label_email">Enviar Correo</span>
+                    <span>→</span>
+                </a>
+                <a href="https://www.instagram.com/georgealexanderdj/" target="_blank" rel="noopener">
+                    <span data-i18n="label_ig_dm">Instagram DM (@georgealexanderdj)</span>
+                    <span>→</span>
+                </a>
             </div>
         </div>
+        
         <div>
             <form id="booking-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="56d0fbc7-cd66-434f-8894-c7751caae520">
@@ -16,10 +25,12 @@
                 <input type="hidden" name="from_name" value="George Alexander DJ">
                 <input type="hidden" name="theme" value="basic">
                 <input type="hidden" name="cc" value="">
+                
                 <div class="field">
                     <label for="name" data-i18n="form_name_label">Tu nombre</label>
                     <input id="name" name="Nombre" type="text" required>
                 </div>
+                
                 <div class="field-row">
                     <div class="field">
                         <label for="email" data-i18n="form_email_label">Correo electrónico</label>
@@ -30,28 +41,32 @@
                         <input id="date" name="Fecha del evento" type="date">
                     </div>
                 </div>
+                
                 <div class="field">
                     <label for="venue" data-i18n="form_venue_label">Local / evento</label>
                     <input id="venue" name="Local o Evento" type="text" placeholder="ej. terraza, restaurante, jardín privado, brunch, tardeo" data-i18n-placeholder="form_venue_placeholder">
                 </div>
+                
                 <div class="field">
                     <label for="details" data-i18n="form_details_label">Detalles</label>
                     <textarea id="details" name="Detalles" rows="4" placeholder="Horarios, género(s) musical(es), ambiente, promedio de edad esperado..." data-i18n-placeholder="form_details_placeholder"></textarea>
                 </div>
+                
                 <div class="hp-field" aria-hidden="true">
                     <label for="company">Company</label>
                     <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
                 </div>
 
-                <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar</button>
-                <p class="form-note" data-i18n="form_note">Tu mensaje se enviará de forma segura y directa por correo electrónico.</p>
-                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-                <div class="field">
+                <!-- EL CAMBIO CLAVE: El bloque de verificación va ANTES del botón -->
+                <div class="captcha-field" style="margin-bottom: 20px;">
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2ZjNx1MwI16gde" data-theme="dark" data-language="auto"></div>
-
                     <p class="form-error" id="captcha-error" hidden data-i18n="captcha_error">Por favor, completa la verificación de seguridad.</p>
                 </div>
+
+                <button class="submit-btn" type="submit" data-i18n="submit_btn">Enviar Solicitud</button>
+                <p class="form-note" data-i18n="form_note">Tu solicitud se enviará de forma segura y directa por correo electrónico.</p>
+                
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
             </form>
         </div>
     </div>
