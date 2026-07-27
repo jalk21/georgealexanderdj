@@ -78,12 +78,19 @@ window.setupBookingForm = function() {
 
 // ---------- Sistema de Traducciones (i18n) ----------
 window.applyLanguage = function(lang) {
+    // Actualizar el título de la pestaña del navegador
+    
     fetch('assets/i18n/' + lang + '.json')
         .then(function(res) { return res.json(); })
         .then(function(translations) {
             window.translations = translations;
             document.documentElement.lang = lang;
             localStorage.setItem('preferredLanguage', lang);
+
+            // Cambiar título de la página
+            if (window.translations['page_title']) {
+                document.title = window.translations['page_title'];
+            }
 
             // 1. Texto / HTML estándar
             document.querySelectorAll('[data-i18n]').forEach(function(el) {
