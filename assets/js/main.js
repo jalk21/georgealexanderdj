@@ -85,6 +85,7 @@ window.applyLanguage = function(lang) {
             document.documentElement.lang = lang;
             localStorage.setItem('preferredLanguage', lang);
 
+            // 1. Texto / HTML estándar
             document.querySelectorAll('[data-i18n]').forEach(function(el) {
                 var key = el.getAttribute('data-i18n');
                 if (window.translations[key]) {
@@ -92,6 +93,23 @@ window.applyLanguage = function(lang) {
                 }
             });
 
+            // 2. Párrafos de la Bio en HTML (data-i18n-html)
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-html');
+                if (window.translations[key]) {
+                    el.innerHTML = window.translations[key];
+                }
+            });
+
+            // 3. Alt de imágenes (data-i18n-alt)
+            document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-alt');
+                if (window.translations[key]) {
+                    el.alt = window.translations[key];
+                }
+            });
+
+            // 4. Placeholders de formularios (data-i18n-placeholder)
             document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
                 var key = el.getAttribute('data-i18n-placeholder');
                 if (window.translations[key]) {
@@ -99,6 +117,7 @@ window.applyLanguage = function(lang) {
                 }
             });
 
+            // Actualizar estado activo en botones de idioma
             document.querySelectorAll('.lang-btn').forEach(function(btn) {
                 btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
             });
@@ -109,7 +128,6 @@ window.applyLanguage = function(lang) {
             console.error('Error loading translation file:', err);
         });
 };
-
 // ---------- Listener de Email Anti-Spam ----------
 document.addEventListener('click', function(e) {
     var targetLink = e.target.closest('#email-link') || e.target.closest('[data-email-link]');
