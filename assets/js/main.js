@@ -36,93 +36,67 @@ window.setupBookingForm = function() {
 
         var originalBtnText = submitBtn ? submitBtn.innerText : '...';
         if (submitBtn) {
-            submitBtn.innerText = '...';
+            submitBtn.innerText = 'Enviando...';
             submitBtn.disabled = true;
         }
 
         fetch(url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) { return response.json(); })
-            .then(function(data) {
-                if (data.success) {
-                    form.innerHTML = `
-                    <div class="form-success-message" style="text-align: center; padding: 2rem;">
-                        <h3 style="color: #fff; margin-bottom: 1rem;" data-i18n="form_success_title"></h3>
-                        <p style="color: #ccc;" data-i18n="form_success_text"></p>
-                    </div>
-                `;
-                    if (typeof window.applyLanguage === 'function') {
-                        window.applyLanguage(window.currentLang || 'es');
+            method: 'POST',
+            body: formData
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.success) {
+                window.location.href = 'thank-you.html';
+            } else {
+                if (data.message && data.message.toLowerCase().includes('captcha')) {
+                    if (captchaError) {
+                        captchaError.hidden = false;
+                        captchaError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 } else {
-                    if (captchaError) {
-                        captchaError.setAttribute('data-i18n', 'captcha_error');
-                        captchaError.textContent = (window.translations && window.translations['captcha_error']) || '';
-                        captchaError.hidden = false;
-                    }
-                    if (submitBtn) {
-                        submitBtn.innerText = originalBtnText;
-                        submitBtn.disabled = false;
-                    }
-                }
-            })
-            .catch(function(error) {
-                console.error('Error:', error);
-                if (captchaError) {
-                    captchaError.setAttribute('data-i18n', 'network_error');
-                    captchaError.textContent = (window.translations && window.translations['network_error']) || '';
-                    captchaError.hidden = false;
+                    alert('Error al enviar el formulario: ' + (data.message || 'Inténtalo de nuevo.'));
                 }
                 if (submitBtn) {
                     submitBtn.innerText = originalBtnText;
                     submitBtn.disabled = false;
                 }
-            });
+            }
+        })
+        .catch(function(err) {
+            console.error(err);
+            alert('Ocurrió un error de conexión al enviar el formulario.');
+            if (submitBtn) {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
     });
 
-    form.dataset.listenerAttached = "true";
+    form.dataset.listenerAttached = 'true';
 };
 
-// Global scope para variables compartidas de traducción
-window.translations = {};
-window.currentLang = 'es';
-
-window.applyLanguage = function(lang, callback) {
-    window.currentLang = lang;
-    document.documentElement.lang = lang;
-
-    var pageTitle = { es: "George Alexander DJ — Reservas 12h – 00h", en: "George Alexander DJ — Booking 12 PM – 12 AM" };
-    var dialAria = { es: "Vinilo que marca el horario de reservas, de 12h a 00h", en: "Vinyl dial marking the booking window, 12 PM through 12 AM" };
-
-    fetch('assets/lang/' + lang + '.json')
-        .then(function(res) {
-            if (!res.ok) { throw new Error('Failed to load language file: ' + lang); }
-            return res.json();
-        })
-        .then(function(data) {
-            window.translations = data;
-
-            var titleEl = document.getElementById('page-title');
-            if (titleEl) titleEl.textContent = pageTitle[lang];
-
-            var dialEl = document.getElementById('dial-svg');
-            if (dialEl) dialEl.setAttribute('aria-label', dialAria[lang]);
+// ---------- Sistema de Traducciones (i18n) ----------
+window.applyLanguage = function(lang) {
+    fetch('assets/i18n/' + lang + '.json')
+        .then(function(res) { return res.json(); })
+        .then(function(translations) {
+            window.translations = translations;
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLanguage', lang);
 
             document.querySelectorAll('[data-i18n]').forEach(function(el) {
                 var key = el.getAttribute('data-i18n');
-                if (window.translations[key]) { el.textContent = window.translations[key]; }
-            });
-
-            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-html');
-                if (window.translations[key]) { el.innerHTML = window.translations[key]; }
+                if (window.translations[key]) {
+                    el.innerHTML = window.translations[key];
+                }
             });
 
             document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
                 var key = el.getAttribute('data-i18n-placeholder');
-                if (window.translations[key]) { el.placeholder = window.translations[key]; }
+                if (window.translations[key]) {
+                    el.placeholder = window.translations[key];
+                }
             });
 
             document.querySelectorAll('.lang-btn').forEach(function(btn) {
@@ -152,6 +126,20 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// ---------- Control de Visibilidad del Botón Sticky ----------
+function initStickyButton() {
+    var stickyBtn = document.getElementById('sticky-booking-btn');
+    if (!stickyBtn) return;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+            stickyBtn.classList.add('is-visible');
+        } else {
+            stickyBtn.classList.remove('is-visible');
+        }
+    });
+}
+
 // Inicialización de la página tras cargar los HTMLs
 function initPage() {
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
@@ -160,8 +148,18 @@ function initPage() {
         });
     });
 
-    window.applyLanguage('es', window.setupBookingForm);
+    var savedLang = localStorage.getItem('preferredLanguage') || 'es';
+    window.applyLanguage(savedLang);
+
+    if (window.setupBookingForm) {
+        window.setupBookingForm();
+    }
+
+    initStickyButton();
 }
 
-// Iniciar carga de includes y posteriomente la lógica de la página
-loadIncludes().then(initPage);
+document.addEventListener('DOMContentLoaded', function() {
+    loadIncludes().then(function() {
+        initPage();
+    });
+});

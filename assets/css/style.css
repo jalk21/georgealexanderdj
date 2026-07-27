@@ -960,3 +960,46 @@
               letter-spacing: 0.05em;
               color: var(--muted);
           }
+          /* ---------- Sticky Booking CTA Button ---------- */
+.sticky-cta-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #ff5500; /* Puedes usar tu color acento o dorado */
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(255, 85, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticky-cta-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sticky-cta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 85, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .sticky-cta-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+}
