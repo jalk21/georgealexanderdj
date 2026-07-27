@@ -278,6 +278,25 @@
               position: relative;
               overflow: hidden;
           }
+
+          /* Contenedor de los botones */
+        .hero-buttons { /* Cambia el nombre de la clase por el que uses en tu HTML */
+            display: flex;
+            flex-direction: row; /* Fuerza a que se coloquen en fila */
+            gap: 12px; /* Espacio entre los dos botones */
+            width: 100%;
+            align-items: center;
+        }
+
+        /* Estilo individual para los botones en móviles */
+        .hero-buttons .btn, 
+        .hero-buttons a {
+            flex: 1; /* Hace que ambos botones ocupen exactamente el 50% del espacio */
+            text-align: center;
+            padding: 12px 16px; /* Ajusta el padding interno para que el texto encaje cómodo */
+            font-size: 0.85rem; /* Ajuste sutil de fuente si el texto es largo */
+            white-space: nowrap; /* Evita que el texto del botón salte de línea */
+        }
           
           .glow {
               position: absolute;
