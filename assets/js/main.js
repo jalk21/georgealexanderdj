@@ -136,14 +136,19 @@ window.applyLanguage = function(lang, callback) {
         });
 };
 
-// ---------- Listener de Email Anti-Spam (Escuchando globalmente) ----------
+// ---------- Listener de Email Anti-Spam ----------
 document.addEventListener('click', function(e) {
     var targetLink = e.target.closest('#email-link') || e.target.closest('[data-email-link]');
     if (targetLink) {
         e.preventDefault();
+        
         var user = "contact";
         var domain = "georgealexanderdj.com";
-        window.location.href = "mailto:" + user + "@" + domain;
+        var email = user + "@" + domain;
+
+        // Abrir ventana de redacción de Gmail directamente en la web
+        var gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(email);
+        window.open(gmailUrl, '_blank');
     }
 });
 
