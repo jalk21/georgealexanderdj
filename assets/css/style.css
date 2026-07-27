@@ -423,9 +423,44 @@
               background: var(--cyan);
           }
           
-          .hero-eq {
-              margin-top: 28px;
-          }
+          .hero-eq, 
+            .eq {
+                position: relative !important; /* Quita el posicionamiento flotante/absoluto */
+                top: auto !important;
+                left: auto !important;
+                display: flex !important;
+                align-items: flex-end;
+                gap: 3px;
+                height: 24px;
+                margin-top: 24px;
+                margin-bottom: 16px; /* Empuja los botones hacia abajo para no solaparse */
+                z-index: 1;
+            }
+
+            /* Asegura que las barras del ecualizador mantengan su tamaño */
+            .hero-eq span, 
+            .eq span {
+                width: 3px;
+                background-color: var(--accent-color, #00f0ff); /* O el color cyan/turquesa de tu tema */
+                display: inline-block;
+            }
+
+            /* Contenedor de botones en paralelo */
+            .hero-buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+                width: 100%;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                flex: 1;
+                text-align: center;
+                padding: 12px 12px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
           
           .hero-ctas {
               margin-top: 26px;
