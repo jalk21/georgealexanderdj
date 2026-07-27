@@ -596,7 +596,7 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--accent-color, #ff3366);
+            color: var(--cyan);
             margin-bottom: 12px;
         }
 
@@ -633,7 +633,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            color: var(--accent-color, #ff3366);
+            color: var(--cyan);
             font-weight: bold;
         }
 
