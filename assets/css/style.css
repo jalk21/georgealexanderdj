@@ -714,7 +714,16 @@
 
         
         .aboutme-cta-wrapper {
-            margin-top: 32px;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-start; /* Alineado a la izquierda con el texto */
+        }
+
+        /* En móviles se puede centrar si lo prefieres */
+        @media (max-width: 768px) {
+            .aboutme-cta-wrapper {
+                justify-content: center;
+            }
         }
         
         .bio-paragraph {
