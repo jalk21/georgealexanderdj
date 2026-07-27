@@ -22,8 +22,21 @@ loadIncludes().then(initPage);
 // ---------- Page logic (runs once every include is in the DOM) ----------
 function initPage() {
 
+    // ---------- Enlace de Correo Seguro (Delegación de Eventos Anti-Spam) ----------
+    document.addEventListener('click', function(e) {
+        // Buscamos si el clic se originó en el link de email o dentro de él
+        var targetLink = e.target.closest('#email-link');
+        if (targetLink) {
+            e.preventDefault(); // Evita el salto del enlace #
+            
+            var user = "contact";
+            var domain = "georgealexanderdj.com";
+            
+            window.location.href = "mailto:" + user + "@" + domain;
+        }
+    });
+
     // ---------- i18n ----------
-    // Ahora translations empieza vacío y se rellena dinámicamente con el JSON
     var translations = {};
 
     var pageTitle = { es: "George Alexander DJ — Reservas 12h – 00h", en: "George Alexander DJ — Booking 12 PM – 12 AM" };
@@ -34,7 +47,6 @@ function initPage() {
     function applyLanguage(lang, callback) {
         currentLang = lang;
         document.documentElement.lang = lang;
-
 
         fetch('assets/lang/' + lang + '.json')
             .then(function(res) {
@@ -57,6 +69,7 @@ function initPage() {
                     if (translations[key]) { el.textContent = translations[key]; }
                 });
 
+                // Traducimos textos con HTML (Biografía)
                 document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
                     var key = el.getAttribute('data-i18n-html');
                     if (translations[key]) { el.innerHTML = translations[key]; }
@@ -73,7 +86,7 @@ function initPage() {
                     btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
                 });
 
-                // Si hay alguna acción pendiente que dependa de la traducción (como iniciar el form), la ejecutamos
+                // Si hay alguna acción pendiente que dependa de la traducción, la ejecutamos
                 if (typeof callback === 'function') { callback(); }
             })
             .catch(function(err) {
