@@ -580,7 +580,6 @@
             ========================================================================== */
         .fit-section {
             padding: 80px 20px;
-            background-color: var(--bg-card, #121212);
             border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
             border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
         }
@@ -597,7 +596,7 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--accent-color, #ff3366);
+            color: var(--cyan);
             margin-bottom: 12px;
         }
 
@@ -634,7 +633,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            color: var(--accent-color, #ff3366);
+            color: var(--cyan);
             font-weight: bold;
         }
 
