@@ -433,7 +433,7 @@
                 gap: 3px;
                 height: 24px;
                 margin-top: 24px;
-                margin-bottom: 16px; /* Empuja los botones hacia abajo para no solaparse */
+                margin-bottom: 24px; /* Empuja los botones hacia abajo para no solaparse */
                 z-index: 1;
             }
 
